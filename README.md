@@ -16,6 +16,9 @@ Both programs plot the distributions of the eigenvalues of the given `A(N,s)` fo
 # Results
 The results agree with the results presented in the paper [1]. The distribution of the eigenvalues in some cases follow the curve of a cardioid as expected. For various other values of `N` and `s` different shapes are being created. See inside the images directory for more examples.
 
+# Thanks
+To rembesques.
+
 # References
 [1] Konstantin Savvidy, George Savvidy, Spectrum and entropy of C-systems MIXMAX random number
 generator, [(DOI)](https://doi.org/10.1016/j.chaos.2016.05.003), [(arxiv)](https://arxiv.org/abs/1510.06274).
