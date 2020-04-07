@@ -7,7 +7,17 @@ In this project we successfully construct a python implementation of the two-par
 # Code
 There are two implementations. The first attempt was a naive approach, using vanilla python3 for the construction of the operator `A(N,s)`. The second attempt, which is much better and faster is using cython for speeding up the construction process.
 
-# How to use the python files
+# How to use the python file
+To be added soon.
+
+# How to use the cython files
+## Building the `create_matrix_fast3` module
+
+Simply run in your terminal:
+
+`python3 setup.py build_ext --inplace`
+
+## Using the `create_matrix_new.py` script
 To be added soon.
 
 # Features
@@ -15,6 +25,11 @@ Both programs plot the distributions of the eigenvalues of the given `A(N,s)` fo
 
 # Results
 The results agree with the results presented in the paper [1]. The distribution of the eigenvalues in some cases follow the curve of a cardioid as expected. For various other values of `N` and `s` different shapes are being created. See inside the images directory for more examples.
+
+# Prerequisites
+
+* Python3
+* Cython
 
 # Thanks
 To rembesques.
