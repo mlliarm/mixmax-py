@@ -31,6 +31,7 @@ The results agree with the results presented in the paper [1]. The distribution 
 
 * Python3
 * Cython
+* Numpy
 
 ## Thanks
 To my friend rembesques.
