@@ -8,7 +8,13 @@ In this project we successfully construct a python implementation of the two-par
 There are two implementations. The first attempt was a naive approach, using vanilla python3 for the construction of the operator `A(N,s)`. The second attempt, which is much better and faster is using cython for speeding up the construction process.
 
 ## How to use the python script
-To be added soon.
+Run: `python3 create_matrix.py` 
+
+You'll get instructions then.
+
+An example of correct run:
+
+`python3 create_matrix.py 100 0 1` 
 
 ## How to use the cython files
 
