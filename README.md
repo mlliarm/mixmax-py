@@ -27,7 +27,7 @@ A correct run: `python3 create_matrix_new.py 128 1 1`.
 
 ## Features
 Both programs plot the distributions of the eigenvalues of the given `A(N,s,m)` for input variables `N`,`s,m` on the plane.
-When `m` equals `1` then `A(N,s,m``)` is the same matrix as the matrix `A(N,s)`.
+When `m` equals `1` then `A(N,s,m)` is the same matrix as the matrix `A(N,s)`.
 
 ## Results
 The results agree with the results presented in the paper [1]. The distribution of the eigenvalues in some cases follow the curve of a cardioid as expected. For various other values of `N` and `s` different shapes are being created. See inside the images directory for more examples.
