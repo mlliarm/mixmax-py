@@ -167,8 +167,7 @@ if __name__ == "__main__":
         inv_A_eigenvals, inv_A_eigenvecs = eig(inverse_of_A)
         print("Finished calculating eigenvals, eigenvecs of inverse A")
         print("Printing and plotting results")
-        print_and_plot_results(inv_A_eigenvals, A_eigenvals, inv_A_eigenvecs,
-								A_eigenvecs, N, s, m)
+        print_and_plot_results(inv_A_eigenvals, A_eigenvals, inv_A_eigenvecs, A_eigenvecs, N, s, m)
         print("Finished printing and plotting results")
         print("Writing eigenvals parts to files")
         write_parts_of_eigenvals_to_disk(inv_A_eigenvals, N, s, m)
