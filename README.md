@@ -8,13 +8,9 @@ In this project we successfully construct a python implementation of the two-par
 There are two implementations. The first attempt was a naive approach, using vanilla python3 for the construction of the operator `A(N,s)`. The second attempt, which is much better and faster is using cython for speeding up the construction process.
 
 ## How to use the python script
-Run: `python3 create_matrix.py` 
+Run: `python3 create_matrix.py` . You'll get instructions then.
 
-You'll get instructions then.
-
-An example of correct run:
-
-`python3 create_matrix.py 100 0 1` 
+An example of correct run: `python3 create_matrix.py 100 0 1`. 
 
 ## How to use the cython files
 
@@ -25,7 +21,9 @@ Simply run in your terminal:
 `python3 setup.py build_ext --inplace`
 
 ### Using the create_matrix_new.py script
-To be added soon.
+Run: `python3 create_matrix_new.py`. You'll get instructions then.
+
+A correct run: `python3 create_matrix_new.py 100 0 1`.
 
 ## Features
 Both programs plot the distributions of the eigenvalues of the given `A(N,s)` for input variables `N`,`s` on the plane.
