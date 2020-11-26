@@ -131,8 +131,8 @@ if __name__ == "__main__":
         print(A_three)
         #if s != 0 and s != -1:
         #    raise ValueError("s should be 0 or -1.")
-        A = create_matrix(N,s)
-        #A = A_three
+        #A = create_matrix(N,s)
+        A = A_three
         print(A)
         #print(A == A_three)
         ##A = A_three
