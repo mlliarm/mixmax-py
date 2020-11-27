@@ -17,6 +17,7 @@ def plot_eigenvalues(eigenvals:list) -> None:
 
 def plot_and_save_eigenvalues(eigenvals:list, N:int, s:int, m:int=1) -> None:
     plt.scatter(eigenvals.real,eigenvals.imag, color= 'red', marker='*')
+    plt.title("Eigenvalues of matrix with N = {}, s = {}, m = {}".format(N,s,m))
     filename = str(N) + "_" + str(s) + "_" + str(m) + ".png"
     plt.savefig(filename)
 
