@@ -26,7 +26,7 @@ Run: `python3 create_matrix_new.py`. You'll get instructions then.
 A correct run: `python3 create_matrix_new.py 128 1 1`.
 
 ## Features
-Both programs plot the distributions of the eigenvalues of the given `A(N,s,m)` for input variables `N`,`s,m` on the plane.
+Both programs plot the distributions of the eigenvalues of the given `A(N,s,m)` for input variables `N,s,m` on the plane.
 When `m` equals `1` then `A(N,s,m)` is the same matrix as the matrix `A(N,s)`.
 
 ## Results
