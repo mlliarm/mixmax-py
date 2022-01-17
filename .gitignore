@@ -1,0 +1,2 @@
+# Ignore all the build files after compiling with cython
+./src/cython/build/*
