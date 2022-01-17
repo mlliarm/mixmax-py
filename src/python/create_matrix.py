@@ -1,3 +1,24 @@
+###########################################################################################
+#
+# mixmax-py - a PRNG based on uniformly hyperbolic Anosov C-systems defined on a torus.
+#
+# Copyright (C) 2019-2022  Michail Liarmakopoulos <mlliarm@yandex.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+#
+###########################################################################################
+
 import numpy as np
 from numpy.linalg import eig
 from typing import List, Tuple
@@ -116,8 +137,16 @@ def print_real_and_imag_parts_of_eigenvals(eigenvals:list) -> None:
         #sys.stdout.write(str(eigen_real)+ '\n')
         print(real_imag)
 
+def print_GPL_msg():
+    msg = "mixmax-py Copyright (c) 2019-2022  Michail Liarmakopoulos <mlliarm@yandex.com>\n\
+    This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.\n\
+    This is free software, and you are welcome to redistribute it\n\
+    under certain conditions; type `show c' for details.\n"
+    print(msg)
+
 if __name__ == "__main__":
     try:
+        print_GPL_msg()
         #N = 512
         N = int(sys.argv[1])
         if N == 0:
