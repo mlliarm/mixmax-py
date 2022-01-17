@@ -1,2 +1,3 @@
 # Ignore all the build files after compiling with cython
-./src/cython/build/*
+src/cython/build/*
+src/cython/create_matrix_fast3.c*
