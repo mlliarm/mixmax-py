@@ -33,6 +33,13 @@ jobs:
       fail-fast: false
       matrix:
         language: [ 'python' ]
+        #python: [3.6, 3.7, 3.8, 3.9]
+        include:
+          - python-version: "3.6"
+          - python-version: "3.7"
+          - python-version: "3.8"
+          - python-version: "3.9"
+          - python-version: "3.10"
         # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python', 'ruby' ]
         # Learn more about CodeQL language support at https://git.io/codeql-language-support
 
@@ -45,6 +52,7 @@ jobs:
       uses: github/codeql-action/init@v1
       with:
         languages: ${{ matrix.language }}
+        python-version: ${{ matrix.python-version }}
         # If you wish to specify custom queries, you can do so here or in a config file.
         # By default, queries listed here will override any specified in a config file.
         # Prefix the list here with "+" to use these queries and those in the config file.
