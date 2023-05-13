@@ -1,5 +1,5 @@
 ________________________________________________________________________
-mixmax-py - a PRNG based on uniformly hyperbolic Anosov C-systems defined on a torus implemented in cpython.
+mixmax-py: a PRNG based on uniformly hyperbolic Anosov C-systems defined on a torus implemented in cpython.
 
 Copyright (C) 2019-2023  Michail Liarmakopoulos <mlliarm@yandex.com>
 
