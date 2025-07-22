@@ -30,3 +30,7 @@ def save_bits_for_NIST(mixmax, N:int=1000000, filename:str="mixmax_nist.txt") ->
                 f.write(bytes([byte]))
                 byte = 0
                 count = 0
+        # Write the last incomplete byte if there are remaining bits
+        if count > 0:
+            byte = byte << (8 - count)  # Shift remaining bits to fill the byte
+            f.write(bytes([byte]))
