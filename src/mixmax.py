@@ -1,5 +1,5 @@
 import numpy as np
-from .create_matrix import create_matrix_three_params as create_matrix
+from python.create_matrix import create_matrix_three_params as create_matrix
 
 class MixMaxPRNG:
     """
