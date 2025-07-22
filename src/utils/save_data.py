@@ -13,7 +13,7 @@ def save_bits_for_NIST(mixmax, N:int=1000000) -> None:
 
     Binary format:
         - Each bit is determined by whether the output of `mixmax.next()` is greater than 0.5 (1 for True, 0 for False).
-        - Bits are grouped into bytes (8 bits per byte) and written to a file named "mixmax_testu01.txt".
+        - Bits are grouped into bytes (8 bits per byte) and written to a file named "mixmax_nist.txt".
 
     Note:
         Ensure that the `mixmax` generator is properly initialized before calling this function.
