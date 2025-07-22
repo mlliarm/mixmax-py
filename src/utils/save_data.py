@@ -1,5 +1,5 @@
-def save_floats_for_TestU01(mixmax, N:int=1000000) -> None:
-    with open("mixmax_testu01.txt", "w") as f:
+def save_floats_for_TestU01(mixmax, N:int=1000000, filename:str="mixmax_testu01.txt") -> None:
+    with open(filename, "w") as f:
         for _ in range(N):
             f.write(f"{mixmax.next():.17f}\n")
 
