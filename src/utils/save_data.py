@@ -7,7 +7,7 @@ def save_bits_for_NIST(mixmax, N:int=1000000) -> None:
     byte = 0
     count = 0
     for _ in range(N):
-        bit = 1 if mixmax.next() >  0.5 else 0
+        bit = 1 if mixmax.next() > 0.5 else 0
         byte = (byte << 1) | bit
         count += 1
         if count == 8:
