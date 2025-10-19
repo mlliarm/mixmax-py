@@ -21,6 +21,7 @@
 
 import numpy as np
 from python.create_matrix1 import create_matrix_three_params as create_matrix
+from cython.create_matrix_fast3 import create_matrix_three_params as create_matrix_fast
 
 class MixMaxPRNG:
     """
@@ -44,7 +45,8 @@ class MixMaxPRNG:
         self.N = N
         self.s = s
         self.m = m
-        self.A = create_matrix(N,s,m)
+        #self.A = create_matrix(N,s,m)
+        self.A = create_matrix_fast(N,s,m)
         self.state = np.random.rand(N) if seed is None else np.array(seed) % 1.0
 
     def next(self):
