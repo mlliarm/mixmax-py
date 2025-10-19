@@ -19,6 +19,9 @@
 #
 ###########################################################################################
 
+from typing import List, Tuple
+import numpy as np
+
 def create_matrix(N:int ,s:int) -> List[List]:
     """
     Create an N x N matrix with specific structure for the MIXMAX generator.

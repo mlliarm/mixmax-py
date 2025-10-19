@@ -333,7 +333,7 @@ if __name__ == "__main__":
     except Exception as e:
         print(e)
         print("Run as:")
-        print("python3 create_matrix.py N s m")
+        print("python3 results_and_plots.py N s m")
         print()
         print("Where:")
         print("N: size of matrix greater than 1")
@@ -341,4 +341,4 @@ if __name__ == "__main__":
         print("m: the third parameter, greater or equal to 1")
         print()
         print("Example:")
-        print("python3 create_matrix.py 10 0 0")
+        print("python3 results_and_plots.py 10 0 0")
