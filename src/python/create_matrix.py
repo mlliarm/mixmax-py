@@ -25,10 +25,27 @@ from typing import List, Tuple
 import sys
 import matplotlib.pyplot as plt
 import math
-#from numpy import matrix
 from numpy.linalg import inv
 
 def create_matrix(N:int ,s:int) -> List[List]:
+    """
+    Create an N x N matrix with specific structure for the MIXMAX generator.
+
+    Parameters:
+        N (int): The size of the square matrix (must be greater than 1).
+        s (int): The magic number parameter (typically 0 or -1).
+
+    Returns:
+        List[List]: An N x N numpy array with float64 dtype.
+
+    Matrix structure:
+        - All elements are initially set to 1.
+        - Diagonal and super-diagonal elements follow the pattern: A[i][j] = 2+k where k = i-j.
+        - If N > 2, the element A[2][1] is set to 3 + s.
+
+    Note:
+        This function creates the characteristic matrix used in MIXMAX PRNG algorithms.
+    """
     A = np.ones(shape=(N,N),dtype=np.float64)
     for i in range(N):
         for j in range(N):
@@ -40,6 +57,26 @@ def create_matrix(N:int ,s:int) -> List[List]:
     return A
 
 def create_matrix_three_params(N:int, s:int, m:int) -> List[List]:
+    """
+    Create an N x N matrix with three parameters for the MIXMAX generator.
+
+    Parameters:
+        N (int): The size of the square matrix (must be greater than 1).
+        s (int): The magic number parameter (typically 0 or -1).
+        m (int): The third parameter controlling diagonal scaling (must be >= 1).
+
+    Returns:
+        List[List]: An N x N numpy array with float64 dtype.
+
+    Matrix structure:
+        - All elements are initially set to 1.
+        - Diagonal elements (i=j, i>0): A[i][j] = 2.
+        - Off-diagonal elements where i-j=k: A[i][j] = 2 + k*m.
+        - If N > 2, the element A[2][1] is set to m + 2 + s.
+
+    Note:
+        This is an extended version of create_matrix with an additional parameter m.
+    """
     A = np.ones(shape=(N,N),dtype=np.float64)
     for i in range(N):
         for j in range(N):
@@ -53,18 +90,64 @@ def create_matrix_three_params(N:int, s:int, m:int) -> List[List]:
     return A
 
 def plot_eigenvalues(eigenvals:list) -> None:
+    """
+    Plot eigenvalues in the complex plane.
+
+    Parameters:
+        eigenvals (list): A list or array of complex eigenvalues.
+
+    Display:
+        - Eigenvalues are plotted as red stars in the complex plane.
+        - Real parts on x-axis, imaginary parts on y-axis.
+        - The plot is displayed interactively.
+
+    Note:
+        This function is useful for visualizing the spectral properties of matrices.
+    """
     plt.scatter(eigenvals.real,eigenvals.imag, color= 'red', marker='*')
     #plt.xlim([-1,1])
     #plt.ylim([-1,1])
     plt.show()
 
 def plot_and_save_eigenvalues(eigenvals:list, N:int, s:int, m:int=1) -> None:
+    """
+    Plot eigenvalues in the complex plane and save to a file.
+
+    Parameters:
+        eigenvals (list): A list or array of complex eigenvalues.
+        N (int): Matrix size parameter (used in filename).
+        s (int): Magic number parameter (used in filename).
+        m (int): Third parameter (used in filename). Defaults to 1.
+
+    Output:
+        - Saves a PNG file named "{N}_{s}_{m}.png" with the eigenvalue plot.
+        - Eigenvalues are plotted as red stars in the complex plane.
+
+    Note:
+        The filename encodes the matrix parameters for easy identification.
+    """
     plt.scatter(eigenvals.real,eigenvals.imag, color= 'red', marker='*')
     filename = str(N) + "_" + str(s) + "_" + str(m) + ".png"
     plt.savefig(filename)
 
 
 def get_inverse_matrix(numpy_matrix:List[List]) -> List[List]:
+    """
+    Calculate the inverse of a matrix with numerical stabilization.
+
+    Parameters:
+        numpy_matrix (List[List]): A square numpy matrix.
+
+    Returns:
+        List[List]: The inverse of the input matrix.
+
+    Numerical stabilization:
+        - Adds a small value (10^-15) to the diagonal to improve numerical stability.
+        - Uses numpy's inv() function for matrix inversion.
+
+    Note:
+        The diagonal perturbation helps avoid singularity issues in nearly singular matrices.
+    """
     # Adding a small value to the diagonal before inversion
     m = 10**(-15)
     numpy_matrix = numpy_matrix + np.eye(numpy_matrix.shape[1])*m
@@ -72,9 +155,38 @@ def get_inverse_matrix(numpy_matrix:List[List]) -> List[List]:
     return inv(numpy_matrix)
 
 def entropy(eigenvalues:list) -> float:
+    """
+    Calculate the Anosov automorphism entropy from eigenvalues.
+
+    Parameters:
+        eigenvalues (list): A list or array of complex eigenvalues.
+
+    Returns:
+        float: The Anosov automorphism entropy value.
+
+    Calculation:
+        - Sums log(|λ|) for all eigenvalues λ where |λ| > 1 (see Savvidi et al ref. eq. 1.3, 1.4)
+        - This measures the exponential rate of divergence in dynamical systems.
+    """
     return sum(math.log(abs(x)) for x in eigenvalues if abs(x)>1)
 
 def calculate_entropies(s:int) -> Tuple[List, List]:
+    """
+    Calculate Anosov automorphism entropies for a range of matrix sizes.
+
+    Parameters:
+        s (int): The magic number parameter for matrix creation.
+
+    Returns:
+        Tuple[List, List]: A tuple containing:
+            - List of N values (matrix sizes from 2 to 1000 in steps of 50).
+            - List of corresponding entropy values.
+
+    Process:
+        - Creates matrices for N = 2, 52, 102, ..., 952.
+        - Computes eigenvalues of the inverse matrix.
+        - Calculates Anosov automorphism entropy for each size.
+    """
     Nvals = list()
     entropies = list()
     for N in range(2,1001,50):
@@ -87,21 +199,87 @@ def calculate_entropies(s:int) -> Tuple[List, List]:
     return Nvals, entropies
 
 def plot_entropies(entropies:list, Nvals:list) -> None:
+    """
+    Plot Anosov automorphisms entropies versus matrix size.
+
+    Parameters:
+        entropies (list): List of entropy values.
+        Nvals (list): List of corresponding N (matrix size) values.
+
+    Display:
+        - Scatter plot with N values on x-axis and entropy on y-axis.
+        - Shows how entropy changes with matrix size.
+        - Plot is displayed interactively.
+    """
     #plt.plot(entropies, marker="*")
     plt.scatter(Nvals, entropies)
     plt.xlabel("Values of N")
-    plt.ylabel("Values of Kolmogorov Entropy")
+    plt.ylabel("Values of Anosov Automorphism Entropy")
     plt.show()
 
 
 def calculate_condition_number(numpy_matrix: List[List]) -> float:
+    """
+    Calculate the condition number of a matrix.
+
+    Parameters:
+        numpy_matrix (List[List]): A square numpy matrix.
+
+    Returns:
+        float: The condition number of the matrix.
+
+    Interpretation:
+        - Measures how sensitive the matrix inverse is to perturbations.
+        - Higher values indicate numerical instability.
+        - A condition number near 1 indicates a well-conditioned matrix.
+
+    Note:
+        Useful for assessing numerical stability of matrix operations.
+    """
     return np.linalg.cond(numpy_matrix)
 
 def has_double_roots(eigenvals:list, N:int) -> bool:
+    """
+    Check if a matrix has repeated eigenvalues.
+
+    Parameters:
+        eigenvals (list): List or array of eigenvalues.
+        N (int): Expected number of distinct eigenvalues (matrix size).
+
+    Returns:
+        bool: True if there are repeated eigenvalues, False otherwise.
+
+    Method:
+        - Compares the number of unique eigenvalues to the expected count N.
+        - Uses set conversion to eliminate duplicates.
+
+    Note:
+        Repeated eigenvalues can indicate special symmetries or degeneracies.
+    """
     return not N == len(set(eigenvals))
 
 def print_and_plot_results(inv_A_eigenvals:list, A_eigenvals:list,
     inv_A_eigenvecs:list, A_eigenvecs:list, N:int, s:int, m:int) -> None:
+    """
+    Print comprehensive analysis results and plot eigenvalues.
+
+    Parameters:
+        inv_A_eigenvals (list): Eigenvalues of the inverse matrix.
+        A_eigenvals (list): Eigenvalues of the original matrix.
+        inv_A_eigenvecs (list): Eigenvectors of the inverse matrix.
+        A_eigenvecs (list): Eigenvectors of the original matrix.
+        N (int): Matrix size parameter.
+        s (int): Magic number parameter.
+        m (int): Third parameter.
+
+    Output:
+        - Prints eigenvalues and eigenvectors of both A and inv(A).
+        - Displays eigenvalue plots.
+        - Saves eigenvalue plot to file.
+        - Prints Anosov automorphism entropy, condition numbers, determinants.
+        - Checks for repeated eigenvalues.
+        - Displays real and imaginary parts of eigenvalues.
+    """
     print("A Eigenvalues:")
     print(A_eigenvals)
     print("-------")
@@ -125,12 +303,42 @@ def print_and_plot_results(inv_A_eigenvals:list, A_eigenvals:list,
     print("Imaginary eigenvals:",inv_A_eigenvals.imag)
 
 def keep_real_and_imag_parts_of_eigenvals(eigenvals:list) -> list:
+    """
+    Extract unique real and imaginary parts from eigenvalues.
+
+    Parameters:
+        eigenvals (list): List or array of complex eigenvalues.
+
+    Returns:
+        list: A list containing the symmetric difference of real and imaginary parts.
+
+    Method:
+        - Extracts all real parts into a set.
+        - Extracts all imaginary parts into a set.
+        - Returns the symmetric difference (elements in one set but not both).
+
+    Note:
+        Useful for identifying distinct numerical values in eigenvalue spectra.
+    """
     real_set = set(eigenvals.real)
     imag_set = set(eigenvals.imag)
     result_set = real_set.symmetric_difference(imag_set)
     return list(result_set)
 
 def print_real_and_imag_parts_of_eigenvals(eigenvals:list) -> None:
+    """
+    Print unique real and imaginary parts of eigenvalues.
+
+    Parameters:
+        eigenvals (list): List or array of complex eigenvalues.
+
+    Output:
+        - Prints each unique real or imaginary part on a separate line.
+        - Uses keep_real_and_imag_parts_of_eigenvals() to extract values.
+
+    Note:
+        Provides a compact view of the numerical values in the eigenvalue spectrum.
+    """
     real_and_imag_parts_of_eigenvals = keep_real_and_imag_parts_of_eigenvals(eigenvals)
     #real_and_imag_parts_of_eigenvals.sort()
     for real_imag in real_and_imag_parts_of_eigenvals:
@@ -138,6 +346,15 @@ def print_real_and_imag_parts_of_eigenvals(eigenvals:list) -> None:
         print(real_imag)
 
 def print_GPL_msg():
+    """
+    Print the GPL license notice and warranty disclaimer.
+
+    Output:
+        - Displays copyright information.
+        - Shows GPL license notice.
+        - Includes warranty disclaimer.
+        - Mentions redistribution conditions.
+    """
     msg = "mixmax-py Copyright (c) 2019-2022  Michail Liarmakopoulos <mlliarm@yandex.com>\n\
     This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.\n\
     This is free software, and you are welcome to redistribute it\n\
