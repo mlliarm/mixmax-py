@@ -25,7 +25,6 @@ from typing import List, Tuple
 import sys
 import matplotlib.pyplot as plt
 import math
-#from numpy import matrix
 from numpy.linalg import inv
 from create_matrix_fast3 import create_matrix, create_matrix_three_params
 

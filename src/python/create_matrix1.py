@@ -58,7 +58,8 @@ def create_matrix_three_params(N:int, s:int, m:int) -> List[List]:
     Parameters:
         N (int): The size of the square matrix (must be greater than 1).
         s (int): The magic number parameter (typically 0 or -1).
-        m (int): The third parameter controlling diagonal scaling (must be >= 1).
+        m (int): The third parameter controlling diagonal scaling (must be >= 1). 
+                 For the value 1 it defaults back to the two parameter method.
 
     Returns:
         List[List]: An N x N numpy array with float64 dtype.
