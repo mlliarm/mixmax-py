@@ -25,7 +25,7 @@ import subprocess
 def run_shit(N, aList):
     "To produce some interesting examples"
     for i in aList:
-        subprocess.call(['python3', 'create_matrix_new.py', '{}'.format(N), str(i), str(1)])
+        subprocess.call(['python3', 'results_and_plots.py', '{}'.format(N), str(i), str(1)])
 
 
 if __name__ == "__main__":
