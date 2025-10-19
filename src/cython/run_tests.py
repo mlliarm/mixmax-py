@@ -2,7 +2,7 @@
 #
 # mixmax-py - a PRNG based on uniformly hyperbolic Anosov C-systems defined on a torus.
 #
-# Copyright (C) 2019-2022  Michail Liarmakopoulos <mlliarm@yandex.com>
+# Copyright (C) 2019-2025  Michail Liarmakopoulos <mlliarm@yandex.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ import subprocess
 def run_shit(N, aList):
     "To produce some interesting examples"
     for i in aList:
-        subprocess.call(['python3', 'create_matrix_new.py', '{}'.format(N), str(i), str(1)])
+        subprocess.call(['python3', 'results_and_plots.py', '{}'.format(N), str(i), str(1)])
 
 
 if __name__ == "__main__":
