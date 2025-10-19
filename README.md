@@ -1,7 +1,7 @@
 ________________________________________________________________________
 mixmax-py: a python implemented PRNG based on uniformly hyperbolic Anosov C-systems defined on a torus.
 
-Copyright (C) 2019-2023  Michail Liarmakopoulos <mlliarm@yandex.com>
+Copyright (C) 2019-2025  Michail Liarmakopoulos <mlliarm@yandex.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
