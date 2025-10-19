@@ -20,8 +20,8 @@
 ###########################################################################################
 
 import numpy as np
-from python.create_matrix1 import create_matrix_three_params as create_matrix
-from cython.create_matrix_fast3 import create_matrix_three_params as create_matrix_fast
+from python_code.create_matrix1 import create_matrix_three_params as create_matrix
+from cython_code.create_matrix_fast3 import create_matrix_three_params as create_matrix_fast
 
 class MixMaxPRNG:
     """
