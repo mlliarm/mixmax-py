@@ -35,6 +35,7 @@ int main(void) {
     PyRun_SimpleString("import sys");
     PyRun_SimpleString("sys.path.append('.')");
     PyRun_SimpleString("sys.path.append('./src')");
+    PyRun_SimpleString("sys.path.insert(0, '/home/milia/Documents/dev/python/mixmax-py/src')");
     
     // Import your mixmax module
     printf("Importing MIXMAX module...\n");
@@ -47,25 +48,25 @@ int main(void) {
         return 1;
     }
     
-    // Get the Mixmax class
-    PyObject *mixmax_class = PyObject_GetAttrString(module, "Mixmax");
+    // Get the MixMaxPRNG class (not Mixmax!)
+    PyObject *mixmax_class = PyObject_GetAttrString(module, "MixMaxPRNG");
     if (mixmax_class == NULL) {
         PyErr_Print();
-        fprintf(stderr, "Error: Could not find Mixmax class\n");
+        fprintf(stderr, "Error: Could not find MixMaxPRNG class\n");
         Py_DECREF(module);
         Py_Finalize();
         return 1;
     }
     
-    // Create Mixmax instance: Mixmax(N=17, s=0)
-    printf("Creating MIXMAX generator (N=17, s=0)...\n");
-    PyObject *args = Py_BuildValue("(ii)", 17, 0);
+    // Create MixMaxPRNG instance: MixMaxPRNG(N=17, s=0)
+    printf("Creating MixMaxPRNG generator (N=256, s=-1, m=1)...\n");
+    PyObject *args = Py_BuildValue("(iii)", 256, -1, 1);
     generator_obj = PyObject_CallObject(mixmax_class, args);
     Py_DECREF(args);
     
     if (generator_obj == NULL) {
         PyErr_Print();
-        fprintf(stderr, "Error: Could not create Mixmax instance\n");
+        fprintf(stderr, "Error: Could not create MixMaxPRNG instance\n");
         Py_DECREF(mixmax_class);
         Py_DECREF(module);
         Py_Finalize();
@@ -86,12 +87,12 @@ int main(void) {
     
     // Create TestU01 generator wrapper
     printf("Creating TestU01 generator wrapper...\n");
-    gen = unif01_CreateExternGenBits("MIXMAX (N=17, s=0)", ReadBits);
+    gen = unif01_CreateExternGenBits("MixMaxPRNG (N=17, s=0)", ReadBits);
     
     // Run SmallCrush battery
     printf("\n");
     printf("========================================\n");
-    printf("Running SmallCrush on MIXMAX...\n");
+    printf("Running SmallCrush on MixMaxPRNG...\n");
     printf("This will take approximately 5-10 minutes\n");
     printf("========================================\n");
     printf("\n");
