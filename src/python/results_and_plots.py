@@ -327,8 +327,8 @@ if __name__ == "__main__":
         inv_A_eigenvals, inv_A_eigenvecs = eig(inverse_of_A)
         print_and_plot_results(inv_A_eigenvals, A_eigenvals, inv_A_eigenvecs, A_eigenvecs, N, s, m)
         #print_real_and_imag_parts_of_eigenvals(inv_A_eigenvals)
-        #vals, entropies = calculate_entropies(s)
-        #plot_entropies(entropies, Nvals)
+        #Nvals, entropies = calculate_entropies(s) # Heavy computationally
+        #plot_entropies(entropies, Nvals) ## Doesn't save plot in a file
         #print(entropies)
     except Exception as e:
         print(e)
