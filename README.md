@@ -83,3 +83,4 @@ generator, [(DOI)](https://doi.org/10.1016/j.chaos.2016.05.003), [(arxiv)](https
 - [2] [Cython documentation](https://cython.readthedocs.io/en/latest/src/tutorial/cython_tutorial.html)
 - [3] [How to run TestU01 to test a random number generator (StackOverflow)](https://stackoverflow.com/questions/65403695/how-to-run-testu01-to-test-a-random-number-generator)
 - [4] [How to Test with TestU01](https://www.pcg-random.org/posts/how-to-test-with-testu01.html)
+- [5] [Dieharder test suite](https://webhome.phy.duke.edu/~rgb/General/dieharder.php)
