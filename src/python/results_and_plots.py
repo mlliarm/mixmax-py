@@ -327,13 +327,13 @@ if __name__ == "__main__":
         inv_A_eigenvals, inv_A_eigenvecs = eig(inverse_of_A)
         print_and_plot_results(inv_A_eigenvals, A_eigenvals, inv_A_eigenvecs, A_eigenvecs, N, s, m)
         #print_real_and_imag_parts_of_eigenvals(inv_A_eigenvals)
-        #vals, entropies = calculate_entropies(s)
-        #plot_entropies(entropies, Nvals)
+        #Nvals, entropies = calculate_entropies(s) # Heavy computationally
+        #plot_entropies(entropies, Nvals) ## Doesn't save plot in a file
         #print(entropies)
     except Exception as e:
         print(e)
         print("Run as:")
-        print("python3 create_matrix.py N s m")
+        print("python3 results_and_plots.py N s m")
         print()
         print("Where:")
         print("N: size of matrix greater than 1")
@@ -341,4 +341,4 @@ if __name__ == "__main__":
         print("m: the third parameter, greater or equal to 1")
         print()
         print("Example:")
-        print("python3 create_matrix.py 10 0 0")
+        print("python3 results_and_plots.py 10 0 0")
