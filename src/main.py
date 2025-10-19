@@ -34,5 +34,7 @@ mixmax = MixMaxPRNG(N, s, m, seed)
 # Save floats 
 #save.save_floats_for_TestU01(mixmax, 10_000_000, "Dieharder_test_N{}_s{}_m{}.txt".format(N,s,m))
 # Save bits
-save.save_bits_for_NIST(mixmax, 10_000_000, "Dieharder_binary_N{}_s{}_m{}.bin".format(N,s,m))
+#save.save_bits_for_NIST(mixmax, 10_000_000, "Dieharder_binary_N{}_s{}_m{}.bin".format(N,s,m))
+# Save 64bit integers in binary for Dieharder
+save.save_uint64_for_dieharder(mixmax, 100_000_000, "Dieharder_64bit_N{}_s{}_m{}.bin".format(N,s,m))
 
