@@ -27,22 +27,36 @@ In this project we successfully construct a python implementation of the two-par
 There are two implementations. The first attempt was a naive approach, using vanilla python3 for the construction of the operator `A(N,s)`. The second attempt, which is much better and faster is using cython for speeding up the construction process.
 
 ## How to use the python script
-Run: `python3 create_matrix.py` . You'll get instructions then.
+Run: `python3 results_and_plots.py` . You'll get instructions then.
 
-An example of correct run: `python3 create_matrix.py 128 1 1`. 
+An example of correct run: `python3 results_and_plots.py 128 1 1`. 
 
 ## How to use the cython files
 
 ### Building the create_matrix_fast3 module
 
-Simply run in your terminal:
+Simply run in your terminal (see [2]):
 
 `python3 setup.py build_ext --inplace`
 
-### Using the create_matrix_new.py script
-Run: `python3 create_matrix_new.py`. You'll get instructions then.
+### Using the cythonized module
 
-A correct run: `python3 create_matrix_new.py 128 1 1`.
+The cythonized module will be inside the `cython/scr/cython/` directory.
+
+In order to see the results of a matrix of a specific dimension N you need to copy it in the directory  `cython` where `results_and_plots.py` lies.
+
+### Using the create_matrix_new.py script
+Run: `python3 results_and_plots.py`. You'll get instructions then.
+
+A correct run: `python3 results_and_plots.py 128 1 1`.
+
+## Generating pseudorandom numbers with mixmax-py
+
+Modify `main.py` as needed and run `python3 main.py`.
+
+It's now set to create txt files to use with [TestU01](https://simul.iro.umontreal.ca/testu01/tu01.html) suite.
+
+To test the generated numbers check [3][4].
 
 ## Features
 Both programs plot the distributions of the eigenvalues of the given `A(N,s,m)` for input variables `N,s,m` on the plane.
@@ -66,3 +80,6 @@ To my friend rembesques.
 ## References
 [1] Konstantin Savvidy, George Savvidy, Spectrum and entropy of C-systems MIXMAX random number
 generator, [(DOI)](https://doi.org/10.1016/j.chaos.2016.05.003), [(arxiv)](https://arxiv.org/abs/1510.06274).
+[2] [Cython documentation](https://cython.readthedocs.io/en/latest/src/tutorial/cython_tutorial.html)
+[3] [How to run TestU01 to test a random number generator (StackOverflow)](https://stackoverflow.com/questions/65403695/how-to-run-testu01-to-test-a-random-number-generator)
+[4] [How to Test with TestU01](https://www.pcg-random.org/posts/how-to-test-with-testu01.html)
